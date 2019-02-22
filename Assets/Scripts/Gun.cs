@@ -9,6 +9,8 @@ public class Gun : MonoBehaviour
     public float range = 100f;
     public Camera fpsCam;
     public GameObject impact;
+    public GameObject prefab;
+    public float speed = 30;
 
     void Update()
     {
@@ -29,7 +31,7 @@ public class Gun : MonoBehaviour
             Vector3 v3T = Input.mousePosition;
             v3T.z = 10.0f;
             go.transform.LookAt(Camera.main.ScreenToWorldPoint(v3T));
-            
+            rb.velocity = Camera.main.transform.forward * 40;
             RaycastHit hit;
 
 

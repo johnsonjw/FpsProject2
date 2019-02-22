@@ -62,7 +62,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
-    <Compile Include="Assets\Scripts\Zombie.cs" />
     <None Include="Assets\Weapons Pack(LOW POLY)\Weapons Pack info.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Biosh/Desktop/Project 2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
