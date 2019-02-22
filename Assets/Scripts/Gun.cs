@@ -8,21 +8,22 @@ public class Gun : MonoBehaviour
     public float damage = 10f;
     public float range = 100f;
     public Camera fpsCam;
-    public GameObject impact;
-    public GameObject sphere;
-    public GameObject cube;
-    public float speed = 30;
+    public Transform barrelEnd;
+    public Rigidbody primaryRB;
+    public Rigidbody secondaryRB;
+    public float primarySpeed;
+    public float secondarySpeed;
 
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            ShootCube();
         }
 
         if (Input.GetButtonDown("Fire2"))
         {
-            Shoot2();
+            ShootSphere();
         }
 
         
@@ -30,38 +31,16 @@ public class Gun : MonoBehaviour
       
     }
 
-    public void Shoot()
-    {  
-        cube.transform.position = Camera.main.transform.position;
-            Rigidbody rb = cube.AddComponent<Rigidbody>();
-            Vector3 v3T = Input.mousePosition;
-            v3T.z = 10.0f;
-            cube.transform.LookAt(Camera.main.ScreenToWorldPoint(v3T));
-            rb.velocity = Camera.main.transform.forward * 40;
-            RaycastHit hit;
-
-
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
-        {
-            Instantiate(impact, hit.point, Quaternion.LookRotation(hit.normal));
-        }
-    }
-    public void Shoot2()
+    public void ShootCube()
     {
-        sphere.transform.position = Camera.main.transform.position;
-        Rigidbody rb = sphere.AddComponent<Rigidbody>();
-        Vector3 v3T = Input.mousePosition;
-        v3T.z = 10.0f;
-        sphere.transform.LookAt(Camera.main.ScreenToWorldPoint(v3T));
-        rb.velocity = Camera.main.transform.forward * 40;
-        RaycastHit hit;
-
-
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
-        {
-            Instantiate(impact, hit.point, Quaternion.LookRotation(hit.normal));
-        }
-
-
+        Rigidbody primaryInstance;
+        primaryInstance = Instantiate(primaryRB, barrelEnd.position, barrelEnd.rotation) as Rigidbody;
+        primaryInstance.AddForce(barrelEnd.forward * primarySpeed);
+    }
+    public void ShootSphere()
+    {
+        Rigidbody secondaryInstance;
+        secondaryInstance = Instantiate(secondaryRB, barrelEnd.position, barrelEnd.rotation) as Rigidbody;
+        secondaryInstance.AddForce(barrelEnd.forward * secondarySpeed);
     }
 }
