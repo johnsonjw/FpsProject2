@@ -17,11 +17,8 @@ public class Gun : MonoBehaviour
             Shoot();
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Held");
-            Shoot();
-        }
+        
+      
       
     }
 
