@@ -7,7 +7,6 @@ public class Gun : MonoBehaviour
 
     public float damage = 10f;
     public float range = 100f;
-
     public Camera fpsCam;
     public GameObject impact;
 
@@ -15,6 +14,12 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            Shoot();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Held");
             Shoot();
         }
       
@@ -27,6 +32,7 @@ public class Gun : MonoBehaviour
             Vector3 v3T = Input.mousePosition;
             v3T.z = 10.0f;
             go.transform.LookAt(Camera.main.ScreenToWorldPoint(v3T));
+            
             RaycastHit hit;
 
 
